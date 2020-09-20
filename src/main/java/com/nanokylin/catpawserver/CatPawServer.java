@@ -1,13 +1,17 @@
 package com.nanokylin.catpawserver;
 
+import com.nanokylin.catpawserver.controller.MainController;
+
 /**
- * Hello world!
- *
+ * Main Class
+ * Stat of Dream
+ * @author Hanbings
  */
 public class CatPawServer
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        MainController mainController = new MainController();
+        mainController.RunCatPawServer();
     }
 }
