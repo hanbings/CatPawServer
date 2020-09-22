@@ -6,6 +6,7 @@
      More log4j example configs can be found at
      <http://logging.apache.org/log4j/2.x/manual/appenders.html>.
 -->
+<!-- log4j2.xml maybe i am lazy @Hanbings -->
 
 <Configuration status="info">
     <Appenders>
