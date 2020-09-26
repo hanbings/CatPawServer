@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="CatPawServer">
+    <output-path>$PROJECT_DIR$/../CatPawRunTime</output-path>
+    <root id="archive" name="CatPawServer.jar">
+      <element id="module-output" name="CatPawServer" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.1" />
+        <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.1" />
+        <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-web:2.1" />
+      </element>
+    </root>
+  </artifact>
+</component>

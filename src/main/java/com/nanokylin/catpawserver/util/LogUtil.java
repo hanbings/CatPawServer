@@ -31,7 +31,7 @@ public class LogUtil {
      * @param message 消息
      * @author Hanbings
      */
-    public void info(String message){
+    public void info(Object message){
         logger.info(message);
     }
     /**
@@ -39,7 +39,7 @@ public class LogUtil {
      * @param message 消息
      * @author Hanbings
      */
-    public void warn(String message){
+    public void warn(Object message){
         logger.warn(message);
     }
     /**
@@ -47,7 +47,7 @@ public class LogUtil {
      * @param message 消息
      * @author Hanbings
      */
-    public void debug(String message){
+    public void debug(Object message){
         logger.debug(message);
     }
     /**
@@ -55,7 +55,7 @@ public class LogUtil {
      * @param message 消息
      * @author Hanbings
      */
-    public void error(String message){
+    public void error(Object message){
         logger.error(message);
     }
     /**
@@ -63,7 +63,7 @@ public class LogUtil {
      * @param message 消息
      * @author Hanbings
      */
-    public void fatal(String message){
+    public void fatal(Object message){
         logger.fatal(message);
     }
 

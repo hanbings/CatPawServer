@@ -1,4 +1,9 @@
 package com.nanokylin.catpawserver.service;
 
-public class ExecutorService {
+/**
+ * 线程池接口
+ * @author Hanbings
+ */
+public interface ExecutorService {
+
 }
