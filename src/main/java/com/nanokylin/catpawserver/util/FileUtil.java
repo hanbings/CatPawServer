@@ -101,4 +101,15 @@ public class FileUtil {
         File file = this.getFile(path);
         return file.exists();
     }
+
+    /**
+     * 获取目录中文件列表
+     *
+     * @param path 被扫描的目录
+     * @return 文件列表Array
+     * @author Hanbings
+     */
+    public String[] getFileList(String path) {
+        return new File(path).list();
+    }
 }

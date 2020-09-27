@@ -1,6 +1,7 @@
 package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.BaseInfo;
+import com.nanokylin.catpawserver.common.Language;
 import com.nanokylin.catpawserver.util.LogUtil;
 
 /**
@@ -13,6 +14,11 @@ public class MainController {
     public void RunCatPawServer(){
         // 打印基本信息
         this.Info();
+        // 实例化语言类
+        Language language = new Language();
+        // 获取语言
+        language.SetLanguageMap(null);
+
     }
     public void Info(){
         log.info("操作系统: " + BaseInfo.SYSTEM_NAME + " " + BaseInfo.SYSTEM_VERSION);
