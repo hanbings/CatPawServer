@@ -7,6 +7,9 @@ import com.nanokylin.catpawserver.util.FileUtil;
 /**
  * Main Class
  * Stat of Dream
+ * (Package) Main -> (controller) MainController
+ * 当然交控制权之前检查能不能把MainController跑起来
+ * 所以先检查依赖啦！
  * @author Hanbings
  */
 public class CatPawServer

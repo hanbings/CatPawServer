@@ -17,6 +17,7 @@ public class FileUtil {
      * 释放文件到Jar外目录
      * @param path 需要释放的文件
      * @param outPath 释放的目标目录
+     * @author Copy form baidu.com
      */
     public void copyFileOutOfJar(String path,String outPath){
         InputStream is = CatPawServer.class.getResourceAsStream(path);
@@ -73,6 +74,7 @@ public class FileUtil {
     }
     /**
      * 获取文件对象
+     * @param path 文件目录
      * @author Hanbings
      */
     public File getFile(String path){
@@ -82,6 +84,7 @@ public class FileUtil {
     /**
      * 判断一个运行目录下的文件是否完整
      * 缺失文件将直接从jar释放
+     * @param fileList 被扫描目录的ArrayList
      * @author Hanbings
      */
     public void existsFileComparedWithJar(ArrayList<String> fileList){
@@ -95,6 +98,7 @@ public class FileUtil {
 
     /**
      * 判断单个文件是否存在
+     * @param path 文件目录
      * @author Hanbings
      */
     public Boolean existsFile(String path){

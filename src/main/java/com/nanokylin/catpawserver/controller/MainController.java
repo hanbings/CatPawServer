@@ -6,7 +6,7 @@ import com.nanokylin.catpawserver.util.LogUtil;
 
 /**
  * 给Main函数用的MainController
- * (Package)Main -> (controller)MainController -> (service)Service -> (service.impl)ServiceImpl <=> (util)Util
+ * (Package) Main -> (controller) MainController -> (service) Service -> (service.impl) ServiceImpl <=> (util) Util
  * @author Hanbings
  */
 public class MainController {
@@ -16,7 +16,7 @@ public class MainController {
         this.Info();
         // 实例化语言类
         Language language = new Language();
-        // 获取语言
+        // 设置语言
         language.SetLanguageMap(null);
 
     }

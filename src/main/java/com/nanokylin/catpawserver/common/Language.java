@@ -16,11 +16,20 @@ public class Language {
 
     /**
      * Getter and Setter
+     * @author Hanbings
      */
     public Map<String, String> GetLanguageMap(String path){
         return LanguageMap;
     }
     public void SetLanguageMap(String language){
-
+        // TODO: Just TODO
+    }
+    /**
+     * 获取单句语言
+     * @author Hanbings
+     */
+    public static String getText(String keys){
+        // TODO: Just TODO
+        return null;
     }
 }
