@@ -80,11 +80,11 @@ public class FileUtil {
     }
 
     /**
-     * 判断一个数组中的文件是否完整
-     * 返回值为缺失文件
+     * 判断一个运行目录下的文件是否完整
+     * 缺失文件将直接从jar释放
      * @author Hanbings
      */
-    public void existsFile(ArrayList<String> fileList){
+    public void existsFileComparedWithJar(ArrayList<String> fileList){
         for (String s : fileList) {
             File file = new File(s);
             if (!file.exists()) {
@@ -94,7 +94,7 @@ public class FileUtil {
     }
 
     /**
-     * 重载一把 判断单个文件
+     * 判断单个文件是否存在
      * @author Hanbings
      */
     public Boolean existsFile(String path){

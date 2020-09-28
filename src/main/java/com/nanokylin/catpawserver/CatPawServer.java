@@ -20,7 +20,7 @@ public class CatPawServer
         // 设置配置文件列表
         configFileList.setList();
         // 加载配置文件和依赖库
-        fileUtil.existsFile(configFileList.getList());
+        fileUtil.existsFileComparedWithJar(configFileList.getList());
         // 实例化主控制器
         MainController mainController = new MainController();
         // 交控制权给控制器
