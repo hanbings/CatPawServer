@@ -1,4 +1,5 @@
 os: 'OS'
+os_version: 'OS version'
 system_arch: 'Arch'
 java_vm_version: 'Java version'
 java_vm_vendor: 'Java vendor'

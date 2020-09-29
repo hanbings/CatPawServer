@@ -1,7 +1,8 @@
 package com.nanokylin.catpawserver.common;
 
+import com.nanokylin.catpawserver.config.YAMLReader;
+
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 本地化语言类
@@ -10,26 +11,24 @@ import java.util.Map;
  */
 public class Language {
     /**
-     * 语言Map
+     * 获取单句语言
+     * @author Hanbings
      */
-    public static Map<String, String> LanguageMap = new HashMap<>();
+    public static Object getText(String keys){
+        return Resources.LanguageMap.get(keys);
+    }
 
     /**
      * Getter and Setter
      * @author Hanbings
      */
-    public Map<String, String> GetLanguageMap(String path){
-        return LanguageMap;
+    public HashMap<String, Object> getLanguageMap(String path){
+        return Resources.LanguageMap;
     }
-    public void SetLanguageMap(String language){
-        // TODO: Just TODO
+    public void setLanguageMap(String language){
+        YAMLReader yamlReader = new YAMLReader();
+        Resources.LanguageMap = (HashMap<String, Object>) yamlReader.getYamlFileConvertToMap("./language/" + language + ".yml");
+        System.out.println(Resources.LanguageMap);
     }
-    /**
-     * 获取单句语言
-     * @author Hanbings
-     */
-    public static String getText(String keys){
-        // TODO: Just TODO
-        return null;
-    }
+
 }

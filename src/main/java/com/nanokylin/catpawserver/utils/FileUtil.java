@@ -1,4 +1,4 @@
-package com.nanokylin.catpawserver.util;
+package com.nanokylin.catpawserver.utils;
 
 import com.nanokylin.catpawserver.CatPawServer;
 

@@ -1,4 +1,4 @@
-package com.nanokylin.catpawserver.util;
+package com.nanokylin.catpawserver.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
