@@ -28,7 +28,6 @@ public class Language {
     public void setLanguageMap(String language){
         YAMLReader yamlReader = new YAMLReader();
         Resources.LanguageMap = (HashMap<String, Object>) yamlReader.getYamlFileConvertToMap("./language/" + language + ".yml");
-        System.out.println(Resources.LanguageMap);
     }
 
 }

@@ -29,7 +29,7 @@ public class FileUtil {
         if (!fp.exists()) {
             // 父目录不存在时先创建
             boolean mkdir = fp.mkdirs();
-            System.out.println("[Loader][Lib] 创建配置文件目录 状态: " + mkdir);
+            System.out.println("[Loader][Lib] Create config path status: " + mkdir);
         }
         if (!f.exists()) {
             // 文件不存在时先创建
@@ -39,7 +39,7 @@ public class FileUtil {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("[Loader][Lib] 创建配置文件 " + outPath + " 源文件: " + path + " 状态: " + makeFile);
+            System.out.println("[Loader][Lib] Create config file " + outPath + " Source file: " + path + " Status: " + makeFile);
         }
         OutputStream os = null;
         // 创建输出流
