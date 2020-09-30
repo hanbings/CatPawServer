@@ -1,9 +1,14 @@
 package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.Config;
+import com.nanokylin.catpawserver.common.Thread;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.common.Language;
+import com.nanokylin.catpawserver.service.ThreadPoolService;
 import com.nanokylin.catpawserver.utils.LogUtil;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 给Main函数用的MainController
@@ -23,6 +28,13 @@ public class MainController {
         language.setLanguageMap(Config.getConfig("language").toString());
         // 打印基本信息
         this.Info();
+        // 实例化线程配置器 (Package) com.nanokylin.catpawserver.common.Thread
+        Thread thread = new Thread();
+        // 设置线程
+        thread.setThread((int) Config.getConfig("corePoolSize"),(int) Config.getConfig("maximumPoolSize"),
+                (long) Config.getConfig("keepAliveTime"), TimeUnit.SECONDS,
+                new ArrayBlockingQueue<Runnable>((int) Config.getConfig("queue")),
+                Config.getConfig("threadNameFormat").toString());
     }
     public void Info(){
         log.info(Language.getText("os") + BaseInfo.SYSTEM_NAME);

@@ -9,8 +9,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>CatPawServer</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://catnote.nanokylin.com/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
