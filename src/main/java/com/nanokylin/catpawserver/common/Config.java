@@ -21,4 +21,7 @@ public class Config {
     public static Object getConfig(String keys){
         return Resources.ConfigMap.get(keys);
     }
+    public static long getLong(String keys){
+        return ((Number) Resources.ConfigMap.get(keys)).longValue();
+    }
 }

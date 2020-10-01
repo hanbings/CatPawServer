@@ -1,10 +1,11 @@
 package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.Config;
-import com.nanokylin.catpawserver.common.Thread;
+import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.common.Language;
 import com.nanokylin.catpawserver.service.ThreadPoolService;
+import com.nanokylin.catpawserver.service.impl.ThreadPoolServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
 
 import java.util.concurrent.ArrayBlockingQueue;
@@ -29,12 +30,28 @@ public class MainController {
         // 打印基本信息
         this.Info();
         // 实例化线程配置器 (Package) com.nanokylin.catpawserver.common.Thread
-        Thread thread = new Thread();
+        ThreadSetter threadSetter = new ThreadSetter();
         // 设置线程
-        thread.setThread((int) Config.getConfig("corePoolSize"),(int) Config.getConfig("maximumPoolSize"),
-                (long) Config.getConfig("keepAliveTime"), TimeUnit.SECONDS,
+        threadSetter.setThread((int) Config.getConfig("corePoolSize"),(int) Config.getConfig("maximumPoolSize"),
+                Config.getLong("keepAliveTime"), TimeUnit.SECONDS,
                 new ArrayBlockingQueue<Runnable>((int) Config.getConfig("queue")),
                 Config.getConfig("threadNameFormat").toString());
+        ThreadPoolService threadPoolService = new ThreadPoolServiceImpl();
+        threadPoolService.initThread();
+
+        //////////////////// Thread Test /////////////////////////
+        java.lang.Thread t1 = new MyThread();
+        java.lang.Thread t2 = new MyThread();
+        java.lang.Thread t3 = new MyThread();
+        java.lang.Thread t4 = new MyThread();
+        java.lang.Thread t5 = new MyThread();
+        threadPoolService.execute(t1);
+        threadPoolService.execute(t2);
+        threadPoolService.execute(t3);
+        threadPoolService.execute(t4);
+        threadPoolService.execute(t5);
+        //////////////////////////////////////////////////////////
+
     }
     public void Info(){
         log.info(Language.getText("os") + BaseInfo.SYSTEM_NAME);
@@ -48,5 +65,15 @@ public class MainController {
         log.info(Language.getText("cat_paw_server_version") + BaseInfo.CAT_PAW_SERVER_VERSION);
         log.info(Language.getText("cat_paw_server_build_time") + BaseInfo.CAT_PAW_SERVER_BUILD_TIME);
         log.info(BaseInfo.CAT_PAW_SERVER_LOGO);
+    }
+
+}
+class MyThread extends java.lang.Thread {
+    private static final LogUtil log = new LogUtil();
+    @Override
+    public void run() {
+        for (;;){
+            log.info(java.lang.Thread.currentThread().getName() + "正在执行...");
+        }
     }
 }
