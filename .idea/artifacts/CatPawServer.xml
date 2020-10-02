@@ -10,6 +10,7 @@
         <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.1" />
         <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-web:2.1" />
         <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.27" />
+        <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
       </element>
     </root>
   </artifact>

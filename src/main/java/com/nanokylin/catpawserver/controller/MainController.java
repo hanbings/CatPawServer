@@ -4,7 +4,9 @@ import com.nanokylin.catpawserver.common.Config;
 import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.common.Language;
+import com.nanokylin.catpawserver.service.ConsoleService;
 import com.nanokylin.catpawserver.service.ThreadPoolService;
+import com.nanokylin.catpawserver.service.impl.ConsoleServiceImpl;
 import com.nanokylin.catpawserver.service.impl.ThreadPoolServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
 
@@ -19,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 public class MainController {
     private static final LogUtil log = new LogUtil();
     public void RunCatPawServer(){
+        // 统计启动时间
+        long startTime = System.currentTimeMillis();
         // 实例化配置类
         Config config = new Config();
         // 获取配置文件
@@ -34,24 +38,16 @@ public class MainController {
         // 设置线程
         threadSetter.setThread((int) Config.getConfig("corePoolSize"),(int) Config.getConfig("maximumPoolSize"),
                 Config.getLong("keepAliveTime"), TimeUnit.SECONDS,
-                new ArrayBlockingQueue<Runnable>((int) Config.getConfig("queue")),
-                Config.getConfig("threadNameFormat").toString());
-        ThreadPoolService threadPoolService = new ThreadPoolServiceImpl();
-        threadPoolService.initThread();
-
-        //////////////////// Thread Test /////////////////////////
-        java.lang.Thread t1 = new MyThread();
-        java.lang.Thread t2 = new MyThread();
-        java.lang.Thread t3 = new MyThread();
-        java.lang.Thread t4 = new MyThread();
-        java.lang.Thread t5 = new MyThread();
-        threadPoolService.execute(t1);
-        threadPoolService.execute(t2);
-        threadPoolService.execute(t3);
-        threadPoolService.execute(t4);
-        threadPoolService.execute(t5);
-        //////////////////////////////////////////////////////////
-
+                new ArrayBlockingQueue<Runnable>((int) Config.getConfig("queue")));
+        // 启动线程池服务
+        threadSetter.setThreadPool();
+        // 实例化命令行服务
+        ConsoleService consoleService = new ConsoleServiceImpl();
+        // 初始化命令行
+        consoleService.initConsoleService();
+        // 服务器启动完成
+        long endTime = System.currentTimeMillis();
+        log.info("Done (" + (endTime - startTime ) + "ms)! For help, type help");
     }
     public void Info(){
         log.info(Language.getText("os") + BaseInfo.SYSTEM_NAME);
@@ -67,13 +63,4 @@ public class MainController {
         log.info(BaseInfo.CAT_PAW_SERVER_LOGO);
     }
 
-}
-class MyThread extends java.lang.Thread {
-    private static final LogUtil log = new LogUtil();
-    @Override
-    public void run() {
-        for (;;){
-            log.info(java.lang.Thread.currentThread().getName() + "正在执行...");
-        }
-    }
 }

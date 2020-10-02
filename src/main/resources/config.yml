@@ -18,4 +18,3 @@ corePoolSize: 6
 maximumPoolSize: 50
 keepAliveTime: 60
 queue: 10
-threadNameFormat: '[CatThread][%d]'

@@ -8,6 +8,7 @@ public class DependFile {
      */
     public void setList(){
         // 依赖
+        Resources.DependFile.add("./lib/commons-lang-2.6.jar");
         Resources.DependFile.add("./lib/log4j-api-2.1.jar");
         Resources.DependFile.add("./lib/log4j-core-2.1.jar");
         Resources.DependFile.add("./lib/log4j-web-2.1.jar");

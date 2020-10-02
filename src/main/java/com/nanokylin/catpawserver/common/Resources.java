@@ -1,5 +1,7 @@
 package com.nanokylin.catpawserver.common;
 
+import com.nanokylin.catpawserver.service.ThreadPoolService;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.*;
@@ -44,8 +46,8 @@ public class Resources {
     public static TimeUnit unit;
     //线程池所使用的缓冲队列
     public static BlockingQueue<Runnable> queue;
-    // 线程格式
-    public static String threadNameFormat;
     // 拒绝任务的处理策略
     public static ThreadPoolExecutor.AbortPolicy handle = new ThreadPoolExecutor.AbortPolicy();
+    // 线程池对象
+    public static ThreadPoolService threadPoolService;
 }
