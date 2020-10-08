@@ -1,3 +1,5 @@
 Manifest-Version: 1.0
 Main-Class: com.nanokylin.catpawserver.CatPawServer
-Class-Path: ./ ./lib/log4j-api-2.1.jar ./lib/log4j-core-2.1.jar ./lib/commons-lang-2.3.jar ./lib/log4j-web-2.1.jar ./lib/snakeyaml-1.27.jar
+Class-Path: ./ ./lib/commons-lang-2.6.jar ./lib/Java-WebSocket-1.5.1.jar ./lib/log4j-api-2.13.3.jar
+            ./lib/log4j-core-2.13.3.jar ./lib/log4j-slf4j-impl-2.13.3.jar ./lib/log4j-web-2.13.3.jar
+            ./lib/slf4j-api-1.7.25.jar ./lib/snakeyaml-1.27.jar

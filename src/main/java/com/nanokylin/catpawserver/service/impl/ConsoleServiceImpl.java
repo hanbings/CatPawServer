@@ -47,8 +47,8 @@ class Test extends Thread{
     public void run(){
         for (;;){
             try {
-                log.info("Hello World");
-                Thread.sleep(2000);
+                log.info("Server Keep Live Thread");
+                Thread.sleep(100000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -5,9 +5,9 @@ import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.common.Language;
 import com.nanokylin.catpawserver.service.ConsoleService;
-import com.nanokylin.catpawserver.service.ThreadPoolService;
+import com.nanokylin.catpawserver.service.WebSocketService;
 import com.nanokylin.catpawserver.service.impl.ConsoleServiceImpl;
-import com.nanokylin.catpawserver.service.impl.ThreadPoolServiceImpl;
+import com.nanokylin.catpawserver.service.impl.WebSocketServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
 
 import java.util.concurrent.ArrayBlockingQueue;
@@ -45,6 +45,10 @@ public class MainController {
         ConsoleService consoleService = new ConsoleServiceImpl();
         // 初始化命令行
         consoleService.initConsoleService();
+        // 实例化WebSocket服务
+        WebSocketService webSocketService = new WebSocketServiceImpl();
+        // 初始化WebSocket
+        webSocketService.initWebSocketService();
         // 服务器启动完成
         long endTime = System.currentTimeMillis();
         log.info("Done (" + (endTime - startTime ) + "ms)! For help, type help");
