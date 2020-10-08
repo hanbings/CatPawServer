@@ -1,5 +1,6 @@
 package com.nanokylin.catpawserver.service.impl;
 
+import com.nanokylin.catpawserver.common.Config;
 import com.nanokylin.catpawserver.common.Language;
 import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
@@ -85,8 +86,8 @@ class WebSocketThread extends Thread{
     private static final LogUtil log = new LogUtil();
     @Override
     public void run(){
-        String host = "localhost";
-        int port = 10086;
+        String host = (String) Config.getConfig("ip");
+        int port = (int) Config.getConfig("port");
         org.java_websocket.server.WebSocketServer s = new WebSocketServiceImpl(new InetSocketAddress(host, port));
         s.run();
     }

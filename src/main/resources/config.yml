@@ -18,3 +18,12 @@ corePoolSize: 6
 maximumPoolSize: 50
 keepAliveTime: 60
 queue: 10
+
+#####################################
+#          WebSocketService
+#          WebSocket服务部分
+#              ip是IP地址
+#      port是WebSocket的监听端口
+#####################################
+ip: '127.0.0.1'
+port: 10086
