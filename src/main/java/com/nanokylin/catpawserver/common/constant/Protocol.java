@@ -7,14 +7,10 @@ package com.nanokylin.catpawserver.common.constant;
 public class Protocol {
     /**
      * 连接头
-     * [CATHEAD~]
-     * 标准连接头 [CATHEAD~] [USERNAME]
      */
-    public static String CONNECT_HEAD = "CATHEAD~";
+    public static String CONNECT_HEAD = "CAEA";
     /**
      * 链接尾
-     * [CATTAIL~]
-     * 标准连接尾 [CATTAIL~] [USERNAME]
      */
-    public static String CONNECT_TAIL = "CATTAIL~";
+    public static String CONNECT_TAIL = "CAAE";
 }
