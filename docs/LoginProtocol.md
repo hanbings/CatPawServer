@@ -31,19 +31,19 @@
 
 **客户端协议**
 
-| 数据包头 Head | 功能号 Function | 描述 Description                      | 返回内容 Return         | 数据包尾 TALI |
-| ------------- | --------------- | ------------------------------------- | ----------------------- | ------------- |
-| CATC          | 000             | 空功能                                | Void                    | E             |
-| CATC          | 001             | 申请一个WebSocket用户池并创建用户线程 | Login RSA Public Keys   | E             |
-| CATC          | 002             | 请求服务器校验密码                    | Content RSA Public Keys | E             |
+| 数据包头 Head | 功能号 Function | 描述 Description                               | 返回内容 Return         | 数据包尾 TALI |
+| ------------- | --------------- | ---------------------------------------------- | ----------------------- | ------------- |
+| CATC          | 000             | 空功能 可携带一个包含message说明错误字段的json | Void                    | E             |
+| CATC          | 001             | 申请一个WebSocket用户池并创建用户线程          | Login RSA Public Keys   | E             |
+| CATC          | 002             | 请求服务器校验密码                             | Content RSA Public Keys | E             |
 
 **服务端协议**
 
-| 数据包头 Head | 功能号 Function | 描述 Description                              | 数据包尾 TALI |
-| ------------- | --------------- | --------------------------------------------- | ------------- |
-| CATS          | 000             | 空功能                                        | E             |
-| CATS          | 001             | 返回给客户端创建结果 / 若创建不成功将发回空包 | E             |
-| CATS          | 002             | 若登陆成功则为客户端发回第二条RSA Public Keys | E             |
+| 数据包头 Head | 功能号 Function | 描述 Description                               | 数据包尾 TALI |
+| ------------- | --------------- | ---------------------------------------------- | ------------- |
+| CATS          | 000             | 空功能 可携带一个包含message说明错误字段的json | E             |
+| CATS          | 001             | 返回给客户端创建结果 / 若创建不成功将发回空包  | E             |
+| CATS          | 002             | 若登陆成功则为客户端发回第二条RSA Public Keys  | E             |
 
 **功能号 001**
 
@@ -53,12 +53,31 @@
 | ---------------- | --------- | ------------- |
 | username         | String    | 用户名 (邮箱) |
 
+```json
+Package:”CATC001{username:"Hanbings"}E“
+```
+
 服务器包：
 
 | 参数名 Parameter | 类型 Type | 内容 Content              |
 | ---------------- | --------- | ------------------------- |
 | hash             | String    | 盐值**（有效时间为20s）** |
 | keys             | String    | 登陆RAS公钥               |
+
+```
+Package: "CATS001{hash:" 7b7d29fdfd54dc22fad553f70c9c8118691f00ae",keys:"-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzA8X9zhQg9U3VlUpuRXC
+gz2nrIp2OphF71QyWDCktNsRfEFjRwPZL8Cg+MDrqiTb5tHQom5QasH8hp9KeGbq
+/Bq3S++EkWco8GRODO9y7941vtXQAcAf2y80oXl1A0l/CdsiVHFJr3a/zX3WQ+h6
+gm2P93fyAMQyHtJshCVXsUBOl8XXF0m4/i2H2qrFIWUC72trCmDTkZXNIa8qStry
+lS7gAuHg90jnXorDdAEuAX4peg1leGpwyK/F6mvO9rbr/NRmyMVgiTITblQa7V2t
+5/w7UMRxfL6YdifI3256GkIV7QuxONpJoH1ym/udz6Qxw5taFK/+JWQJTe3B38ww
+dwIDAQAB
+-----END PUBLIC KEY-----"}E"
+```
+
+```
+Package: "CATS000{massage:"ERROR: SERVER CAN'T NOT CREATE USER THREAD"}E"
+```
 
 **功能号 002**
 
@@ -70,10 +89,36 @@
 | password         | String    | 加密后的密码  |
 | keys             | String    | 公钥          |
 
+```
+Package:”CATC001{username:"Hanbings",password:"wPZL8Cg+MDrqiTb5tHQom5QasH8hp",keys:"-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzA8X9zhQg9U3VlUpuRXC
+gz2nrIp2OphF71QyWDCktNsRfEFjRwPZL8Cg+MDrqiTb5tHQom5QasH8hp9KeGbq
+/Bq3S++EkWco8GRODO9y7941vtXQAcAf2y80oXl1A0l/CdsiVHFJr3a/zX3WQ+h6
+gm2P93fyAMQyHtJshCVXsUBOl8XXF0m4/i2H2qrFIWUC72trCmDTkZXNIa8qStry
+lS7gAuHg90jnXorDdAEuAX4peg1leGpwyK/F6mvO9rbr/NRmyMVgiTITblQa7V2t
+5/w7UMRxfL6YdifI3256GkIV7QuxONpJoH1ym/udz6Qxw5taFK/+JWQJTe3B38ww
+dwIDAQAB
+-----END PUBLIC KEY-----"}E“
+```
+
 服务器包：
 
 | 参数名 Parameter | 类型 Type | 内容 Content                               |
 | ---------------- | --------- | ------------------------------------------ |
 | keys             | String    | 第二条RSA公钥 （登陆成功的情况下才会发回） |
 | message          | String    | 登陆错误信息（默认为null）                 |
+
+```
+Package: "CATS001{keys:"-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzA8X9zhQg9U3VlUpuRXC
+gz2nrIp2OphF71QyWDCktNsRfEFjRwPZL8Cg+MDrqiTb5tHQom5QasH8hp9KeGbq
+/Bq3S++EkWco8GRODO9y7941vtXQAcAf2y80oXl1A0l/CdsiVHFJr3a/zX3WQ+h6
+gm2P93fyAMQyHtJshCVXsUBOl8XXF0m4/i2H2qrFIWUC72trCmDTkZXNIa8qStry
+lS7gAuHg90jnXorDdAEuAX4peg1leGpwyK/F6mvO9rbr/NRmyMVgiTITblQa7V2t
+5/w7UMRxfL6YdifI3256GkIV7QuxONpJoH1ym/udz6Qxw5taFK/+JWQJTe3B38ww
+dwIDAQAB
+-----END PUBLIC KEY-----",message:"null"}E"
+```
+
+```
+Package: "CATS000{massage:"ERROR: SERVER CAN'T NOT CREATE USER THREAD"}E"
+```
 
