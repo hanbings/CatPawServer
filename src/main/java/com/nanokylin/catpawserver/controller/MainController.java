@@ -5,8 +5,10 @@ import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.common.Language;
 import com.nanokylin.catpawserver.service.ConsoleService;
+import com.nanokylin.catpawserver.service.DataBaseService;
 import com.nanokylin.catpawserver.service.WebSocketService;
 import com.nanokylin.catpawserver.service.impl.ConsoleServiceImpl;
+import com.nanokylin.catpawserver.service.impl.SQLiteDataBaseImpl;
 import com.nanokylin.catpawserver.service.impl.WebSocketServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
 
@@ -49,6 +51,9 @@ public class MainController {
         WebSocketService webSocketService = new WebSocketServiceImpl();
         // 初始化WebSocket
         webSocketService.initWebSocketService();
+        // 初始化SQLITE
+        DataBaseService dataBaseService = new SQLiteDataBaseImpl();
+        dataBaseService.loadSQLiteJDBC("test.db");
         // 服务器启动完成
         long endTime = System.currentTimeMillis();
         log.info("Done (" + (endTime - startTime ) + "ms)! For help, type help");

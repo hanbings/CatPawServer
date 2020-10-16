@@ -3,9 +3,9 @@ package com.nanokylin.catpawserver.common;
 import com.nanokylin.catpawserver.service.ThreadPoolService;
 import org.java_websocket.WebSocket;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.*;
 
 /**
@@ -54,4 +54,8 @@ public class Resources {
     public static ThreadPoolExecutor.AbortPolicy handle = new ThreadPoolExecutor.AbortPolicy();
     // 线程池对象
     public static ThreadPoolService threadPoolService;
+
+    // ################ DataBase ################ //
+    // SQLite
+    public static Connection SQLLiteConnection = null;
 }

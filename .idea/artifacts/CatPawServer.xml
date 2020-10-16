@@ -14,6 +14,7 @@
         <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.13.3" />
         <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-web:2.13.3" />
         <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.13.3" />
+        <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.32.3.2" />
       </element>
     </root>
   </artifact>

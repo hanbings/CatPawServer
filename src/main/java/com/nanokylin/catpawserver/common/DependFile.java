@@ -16,6 +16,7 @@ public class DependFile {
         Resources.DependFile.add("./lib/log4j-web-2.13.3.jar");
         Resources.DependFile.add("./lib/slf4j-api-1.7.25.jar");
         Resources.DependFile.add("./lib/snakeyaml-1.27.jar");
+        Resources.DependFile.add("./lib/sqlite-jdbc-3.32.3.2.jar");
         // 语言
         Resources.DependFile.add("./language/zh_CN.yml");
         Resources.DependFile.add("./language/en_US.yml");
