@@ -9,6 +9,7 @@ import com.nanokylin.catpawserver.service.ConsoleService;
 import com.nanokylin.catpawserver.service.DataBaseService;
 import com.nanokylin.catpawserver.service.WebSocketService;
 import com.nanokylin.catpawserver.service.impl.ConsoleServiceImpl;
+import com.nanokylin.catpawserver.service.impl.database.MySQLDataBaseImpl;
 import com.nanokylin.catpawserver.service.impl.database.SQLiteDataBaseImpl;
 import com.nanokylin.catpawserver.service.impl.WebSocketServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
@@ -53,9 +54,8 @@ public class MainController {
         // 初始化WebSocket
         webSocketService.initWebSocketService();
         // 初始化SQLITE
-        DataBaseService dataBaseService = new SQLiteDataBaseImpl();
-        Resources.SQLLiteConnection = dataBaseService.loadDatabase("test.db");
-
+        DataBaseService dataBaseService = new MySQLDataBaseImpl();
+        Resources.MySQLConnection = dataBaseService.loadDateBase("才不会给你看！","没有的！","别想看！");
         //////////////////////////// TEST ////////////////////////////////
         String sql = "CREATE TABLE COMPANY " +
                 "(ID INT PRIMARY KEY     NOT NULL," +
@@ -64,6 +64,7 @@ public class MainController {
                 " ADDRESS        CHAR(50), " +
                 " SALARY         REAL)";
         /////////////////////////////////////////////////////////////////
+        dataBaseService.execute(Resources.MySQLConnection,sql);
 
         // 服务器启动完成
         long endTime = System.currentTimeMillis();

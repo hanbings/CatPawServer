@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class SQLiteDataBaseImpl implements DataBaseService {
     LogUtil log = new LogUtil();
     @Override
-    public Connection loadDatabase(String dataBaseName) {
+    public Connection loadDataBase(String dataBaseName) {
         Connection connection;
         try {
             Class.forName("org.sqlite.JDBC");
@@ -22,6 +22,14 @@ public class SQLiteDataBaseImpl implements DataBaseService {
             log.error("[SQLITE][ERROR] 连接数据库发生错误");
             e.printStackTrace();
         }
+        return null;
+    }
+
+    /**
+     * 此方法供给MySQL使用 SQLite使用将会返回null
+     */
+    @Override
+    public Connection loadDateBase(String dataBaseURL, String username, String password) {
         return null;
     }
 
