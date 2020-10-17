@@ -1,4 +1,4 @@
-package com.nanokylin.catpawserver.service.impl;
+package com.nanokylin.catpawserver.service.impl.database;
 
 import com.nanokylin.catpawserver.service.DataBaseService;
 import com.nanokylin.catpawserver.utils.LogUtil;

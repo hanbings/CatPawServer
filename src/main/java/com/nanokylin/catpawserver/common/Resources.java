@@ -58,4 +58,5 @@ public class Resources {
     // ################ DataBase ################ //
     // SQLite
     public static Connection SQLLiteConnection = null;
+    public static Connection MySQLConnection = null;
 }

@@ -9,12 +9,10 @@ import com.nanokylin.catpawserver.service.ConsoleService;
 import com.nanokylin.catpawserver.service.DataBaseService;
 import com.nanokylin.catpawserver.service.WebSocketService;
 import com.nanokylin.catpawserver.service.impl.ConsoleServiceImpl;
-import com.nanokylin.catpawserver.service.impl.SQLiteDataBaseImpl;
+import com.nanokylin.catpawserver.service.impl.database.SQLiteDataBaseImpl;
 import com.nanokylin.catpawserver.service.impl.WebSocketServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
-import com.nanokylin.catpawserver.utils.NetFileDownloadUtil;
 
-import java.io.IOException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 

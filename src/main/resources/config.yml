@@ -1,11 +1,14 @@
 #####################################
+#
 #            CatPawServer
 #     Hanbings 3219065882@qq.com
 #           (C) NanoKylin
+#
 #####################################
 language: zh_CN
 
 #####################################
+#
 #          ThreadPoolService
 #           线程池管理器部分
 #       corePoolSize 核心线程数
@@ -13,6 +16,7 @@ language: zh_CN
 #      keepAliveTime 存活时间 (s)
 #           queue 任务缓存器
 #    threadNameFormat 线程名字格式
+#
 #####################################
 corePoolSize: 6
 maximumPoolSize: 50
@@ -20,10 +24,25 @@ keepAliveTime: 60
 queue: 10
 
 #####################################
+#
 #          WebSocketService
 #          WebSocket服务部分
 #              ip是IP地址
 #      port是WebSocket的监听端口
+#
 #####################################
 ip: '0.0.0.0'
 port: 10086
+
+#####################################
+#
+#          DataBaseService
+#           数据库账户密码
+#    这部分很重要 所以要保护好这个文件
+#       后面会想办法加密这里的啦
+#           username是用户名
+#           password是密码
+#
+#####################################
+username: 'username'
+password: 'password'
