@@ -5,7 +5,7 @@
       <element id="module-output" name="CatPawServer" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
-      <element id="directory" name="lib">
+      <element id="directory" name="libs">
         <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.27" />
         <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
         <element id="library" level="project" name="Maven: org.java-websocket:Java-WebSocket:1.5.1" />

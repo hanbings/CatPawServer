@@ -1,6 +1,7 @@
 package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.Config;
+import com.nanokylin.catpawserver.common.Resources;
 import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.common.Language;
@@ -11,7 +12,9 @@ import com.nanokylin.catpawserver.service.impl.ConsoleServiceImpl;
 import com.nanokylin.catpawserver.service.impl.SQLiteDataBaseImpl;
 import com.nanokylin.catpawserver.service.impl.WebSocketServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
+import com.nanokylin.catpawserver.utils.NetFileDownloadUtil;
 
+import java.io.IOException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +56,17 @@ public class MainController {
         webSocketService.initWebSocketService();
         // 初始化SQLITE
         DataBaseService dataBaseService = new SQLiteDataBaseImpl();
-        dataBaseService.loadSQLiteJDBC("test.db");
+        Resources.SQLLiteConnection = dataBaseService.loadDatabase("test.db");
+
+        //////////////////////////// TEST ////////////////////////////////
+        String sql = "CREATE TABLE COMPANY " +
+                "(ID INT PRIMARY KEY     NOT NULL," +
+                " NAME           TEXT    NOT NULL, " +
+                " AGE            INT     NOT NULL, " +
+                " ADDRESS        CHAR(50), " +
+                " SALARY         REAL)";
+        /////////////////////////////////////////////////////////////////
+
         // 服务器启动完成
         long endTime = System.currentTimeMillis();
         log.info("Done (" + (endTime - startTime ) + "ms)! For help, type help");
