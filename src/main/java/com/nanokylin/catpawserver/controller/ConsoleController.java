@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 public class ConsoleController {
     public void initConsole(ThreadController threadController){
-        // 实例化命令行服务
-        ConsoleService consoleService = new ConsoleServiceImpl();
         // 新建控制台线程
         Thread consoleThread = new ConsoleThread();
         consoleThread.setName("ConsoleThread");

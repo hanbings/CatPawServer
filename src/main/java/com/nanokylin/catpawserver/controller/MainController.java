@@ -34,9 +34,9 @@ public class MainController {
         WebSocketController webSocketController = new WebSocketController();
         webSocketController.initWebSocket(threadController);
 
-        // 初始化SQLITE
-        DataBaseService dataBaseService = new MySQLDataBaseImpl();
-        Resources.MySQLConnection = dataBaseService.loadDateBase("才不会给你看！","没有的！","别想看！");
+        // 初始化数据库
+        DataBaseController dataBaseController = new DataBaseController();
+        dataBaseController.initDatabase(threadController);
 
         // 服务器启动完成
         long endTime = System.currentTimeMillis();
