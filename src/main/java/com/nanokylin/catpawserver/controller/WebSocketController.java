@@ -1,11 +1,10 @@
-package com.nanokylin.catpawserver.service.impl;
+package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.Config;
 import com.nanokylin.catpawserver.common.Language;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
-import com.nanokylin.catpawserver.service.ThreadPoolService;
 import com.nanokylin.catpawserver.service.WebSocketPoolService;
-import com.nanokylin.catpawserver.service.WebSocketService;
+import com.nanokylin.catpawserver.service.impl.WebSocketPoolServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
@@ -14,13 +13,24 @@ import org.java_websocket.server.WebSocketServer;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 
-public class WebSocketServiceImpl extends WebSocketServer implements WebSocketService {
+public class WebSocketController extends WebSocketServer{
     private static final LogUtil log = new LogUtil();
     private static final WebSocketPoolService webSocketPoolService = new WebSocketPoolServiceImpl();
-    public WebSocketServiceImpl(){ }
-    public WebSocketServiceImpl(InetSocketAddress address) {
+
+    public WebSocketController(){ }
+    public WebSocketController(InetSocketAddress address) {
         super(address);
     }
+
+    public void initWebSocket(ThreadController threadController){
+        // 实例化WebSocket服务
+        //WebSocketService webSocketService = new WebSocketServiceImpl();
+        // 新建控制台线程
+        Thread WebSocketThread = new WebSocketThread();
+        WebSocketThread.setName("WebSocketThread");
+        threadController.getThreadPool().execute(WebSocketThread);
+    }
+
     @Override
     public void onOpen(WebSocket connect, ClientHandshake handshake) {
 
@@ -93,23 +103,14 @@ public class WebSocketServiceImpl extends WebSocketServer implements WebSocketSe
     public void userJoin(WebSocket connect,String userName){
         webSocketPoolService.addUser(userName, connect);
     }
-
-    @Override
-    public void initWebSocketService(ThreadPoolService threadPoolService){
-        // 新建控制台线程
-        Thread WebSocketThread = new WebSocketThread();
-        WebSocketThread.setName("WebSocketThread");
-        threadPoolService.execute(WebSocketThread);
-    }
 }
-
 class WebSocketThread extends Thread{
     private static final LogUtil log = new LogUtil();
     @Override
     public void run(){
         String host = (String) Config.getConfig("ip");
         int port = (int) Config.getConfig("port");
-        org.java_websocket.server.WebSocketServer s = new WebSocketServiceImpl(new InetSocketAddress(host, port));
+        WebSocketServer s = new WebSocketController(new InetSocketAddress(host, port));
         s.run();
     }
 }
