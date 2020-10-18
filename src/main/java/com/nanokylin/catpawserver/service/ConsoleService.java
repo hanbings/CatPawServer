@@ -5,7 +5,7 @@ public interface ConsoleService {
      * 初始化控制台
      * @author Hanbings
      */
-    void initConsoleService();
+    void initConsoleService(ThreadPoolService threadPoolService);
 
     /**
      * 使用控制台执行指令

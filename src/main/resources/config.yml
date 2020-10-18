@@ -40,9 +40,15 @@ port: 10086
 #           数据库账户密码
 #    这部分很重要 所以要保护好这个文件
 #       后面会想办法加密这里的啦
-#           username是用户名
-#           password是密码
+#      databaseType是数据库类型
+#        可选 mysql | sqlite
+#    mysql需要填入URL连接 账户密码等
+#    username是用户名 sqlite无需填写
+#    password是密码 sqlite无需填写
 #
 #####################################
-username: 'username'
-password: 'password'
+
+databaseType: 'sqlite'
+mysqlURL: 'mysql type into'
+username: 'mysql type into'
+password: 'mysql type into'

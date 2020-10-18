@@ -2,7 +2,6 @@ package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.Config;
 import com.nanokylin.catpawserver.common.Resources;
-import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.common.Language;
 import com.nanokylin.catpawserver.service.ConsoleService;
@@ -10,7 +9,6 @@ import com.nanokylin.catpawserver.service.DataBaseService;
 import com.nanokylin.catpawserver.service.WebSocketService;
 import com.nanokylin.catpawserver.service.impl.ConsoleServiceImpl;
 import com.nanokylin.catpawserver.service.impl.database.MySQLDataBaseImpl;
-import com.nanokylin.catpawserver.service.impl.database.SQLiteDataBaseImpl;
 import com.nanokylin.catpawserver.service.impl.WebSocketServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
 
@@ -38,34 +36,24 @@ public class MainController {
         // 打印基本信息
         this.Info();
         // 实例化线程配置器 (Package) com.nanokylin.catpawserver.common.Thread
-        ThreadSetter threadSetter = new ThreadSetter();
+        ThreadController threadController = new ThreadController();
         // 设置线程
-        threadSetter.setThread((int) Config.getConfig("corePoolSize"),(int) Config.getConfig("maximumPoolSize"),
+        threadController.setThread((int) Config.getConfig("corePoolSize"),(int) Config.getConfig("maximumPoolSize"),
                 Config.getLong("keepAliveTime"), TimeUnit.SECONDS,
                 new ArrayBlockingQueue<Runnable>((int) Config.getConfig("queue")));
         // 启动线程池服务
-        threadSetter.setThreadPool();
+        threadController.setThreadPool();
         // 实例化命令行服务
         ConsoleService consoleService = new ConsoleServiceImpl();
         // 初始化命令行
-        consoleService.initConsoleService();
+        consoleService.initConsoleService(threadController.getThreadPool());
         // 实例化WebSocket服务
         WebSocketService webSocketService = new WebSocketServiceImpl();
-        // 初始化WebSocket
-        webSocketService.initWebSocketService();
+        // 初始化WebSocket 传入线程池
+        webSocketService.initWebSocketService(threadController.getThreadPool());
         // 初始化SQLITE
         DataBaseService dataBaseService = new MySQLDataBaseImpl();
         Resources.MySQLConnection = dataBaseService.loadDateBase("才不会给你看！","没有的！","别想看！");
-        //////////////////////////// TEST ////////////////////////////////
-        String sql = "CREATE TABLE COMPANY " +
-                "(ID INT PRIMARY KEY     NOT NULL," +
-                " NAME           TEXT    NOT NULL, " +
-                " AGE            INT     NOT NULL, " +
-                " ADDRESS        CHAR(50), " +
-                " SALARY         REAL)";
-        /////////////////////////////////////////////////////////////////
-        dataBaseService.execute(Resources.MySQLConnection,sql);
-
         // 服务器启动完成
         long endTime = System.currentTimeMillis();
         log.info("Done (" + (endTime - startTime ) + "ms)! For help, type help");

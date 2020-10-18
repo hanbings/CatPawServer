@@ -1,24 +1,17 @@
 package com.nanokylin.catpawserver.service.impl;
 
-import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.service.ConsoleService;
+import com.nanokylin.catpawserver.service.ThreadPoolService;
 import com.nanokylin.catpawserver.utils.LogUtil;
 import java.util.Scanner;
 
 public class ConsoleServiceImpl implements ConsoleService {
     @Override
-    public void initConsoleService() {
+    public void initConsoleService(ThreadPoolService threadPoolService) {
         // 新建控制台线程
         Thread consoleThread = new ConsoleThread();
         consoleThread.setName("ConsoleThread");
-        // 获取线程池放入线程
-        ThreadSetter threadSetter = new ThreadSetter();
-        threadSetter.getThreadPool().execute(consoleThread);
-
-        /////////////////////////////////// Thread Test ////////////////////////////////////////////
-        Thread test = new Test();
-        threadSetter.getThreadPool().execute(test);
-        ///////////////////////////////////////////////////////////////////////////////////////////
+        threadPoolService.execute(consoleThread);
     }
 
     @Override
@@ -38,20 +31,6 @@ class ConsoleThread extends Thread{
         for(;;){
             String command = sc.nextLine();
             consoleService.execute(command);
-        }
-    }
-}
-class Test extends Thread{
-    private static final LogUtil log = new LogUtil();
-    @Override
-    public void run(){
-        for (;;){
-            try {
-                log.info("Server Keep Live Thread");
-                Thread.sleep(100000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

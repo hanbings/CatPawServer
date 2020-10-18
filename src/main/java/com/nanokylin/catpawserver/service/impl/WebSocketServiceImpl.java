@@ -2,8 +2,8 @@ package com.nanokylin.catpawserver.service.impl;
 
 import com.nanokylin.catpawserver.common.Config;
 import com.nanokylin.catpawserver.common.Language;
-import com.nanokylin.catpawserver.common.ThreadSetter;
 import com.nanokylin.catpawserver.common.constant.BaseInfo;
+import com.nanokylin.catpawserver.service.ThreadPoolService;
 import com.nanokylin.catpawserver.service.WebSocketPoolService;
 import com.nanokylin.catpawserver.service.WebSocketService;
 import com.nanokylin.catpawserver.utils.LogUtil;
@@ -95,13 +95,11 @@ public class WebSocketServiceImpl extends WebSocketServer implements WebSocketSe
     }
 
     @Override
-    public void initWebSocketService(){
+    public void initWebSocketService(ThreadPoolService threadPoolService){
         // 新建控制台线程
         Thread WebSocketThread = new WebSocketThread();
         WebSocketThread.setName("WebSocketThread");
-        // 获取线程池放入线程
-        ThreadSetter threadSetter = new ThreadSetter();
-        threadSetter.getThreadPool().execute(WebSocketThread);
+        threadPoolService.execute(WebSocketThread);
     }
 }
 

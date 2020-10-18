@@ -1,12 +1,13 @@
-package com.nanokylin.catpawserver.common;
+package com.nanokylin.catpawserver.controller;
 
+import com.nanokylin.catpawserver.common.Resources;
 import com.nanokylin.catpawserver.service.ThreadPoolService;
 import com.nanokylin.catpawserver.service.impl.ThreadPoolServiceImpl;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadSetter {
+public class ThreadController {
     public void setThread(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
                           BlockingQueue<Runnable> queue){
         Resources.corePoolSize = corePoolSize;
