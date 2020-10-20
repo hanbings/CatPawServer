@@ -6,7 +6,7 @@ public class DependFile {
     /**
      * Setter And Getter
      */
-    public void setList(){
+    public void setList() {
         // 依赖
         Resources.DependFile.add("./libs/commons-lang-2.6.jar");
         Resources.DependFile.add("./libs/Java-WebSocket-1.5.1.jar");
@@ -25,7 +25,8 @@ public class DependFile {
         Resources.DependFile.add("./config.yml");
 
     }
-    public ArrayList<String> getList(){
+
+    public ArrayList<String> getList() {
         return Resources.DependFile;
     }
 }

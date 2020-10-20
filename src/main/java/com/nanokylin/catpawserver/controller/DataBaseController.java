@@ -11,15 +11,16 @@ public class DataBaseController {
     /**
      * 在这里为数据库连接开线程
      */
-    public void initDatabase(ThreadController threadController){
+    public void initDatabase(ThreadController threadController) {
         Thread dataBaseThread = new DataBaseThread();
         dataBaseThread.setName("DataBaseThread");
         threadController.getThreadPool().execute(dataBaseThread);
     }
 }
-class DataBaseThread extends Thread{
+
+class DataBaseThread extends Thread {
     @Override
-    public void run(){
+    public void run() {
         DataBaseService dataBaseService = new SQLiteDataBaseImpl();
         Resources.SQLLiteConnection = dataBaseService.loadDataBase("test.db");
     }

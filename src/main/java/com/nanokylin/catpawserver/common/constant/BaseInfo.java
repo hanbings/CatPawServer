@@ -3,7 +3,7 @@ package com.nanokylin.catpawserver.common.constant;
 import java.util.Properties;
 
 public class BaseInfo {
-    static final Properties props=System.getProperties();
+    static final Properties props = System.getProperties();
     //系统名称
     public static final String SYSTEM_NAME = props.getProperty("os.name");
     //构架类型
@@ -27,11 +27,11 @@ public class BaseInfo {
     //LOGO
     public static final String CAT_PAW_SERVER_LOGO =
             "                                                           \n" +
-            "_________         __ __________                            \n" +
-            "\\_   ___ \\_____ _/  |\\______   \\_____ __  _  __        \n" +
-            "/    \\  \\/\\__  \\\\   __\\     ___/\\__  \\\\ \\/ \\/ / \n" +
-            "\\     \\____/ __ \\|  | |    |     / __ \\\\     /        \n" +
-            " \\______  (____  /__| |____|    (____  /\\/\\_/           \n" +
-            "        \\/     \\/                    \\/                   ";
+                    "_________         __ __________                            \n" +
+                    "\\_   ___ \\_____ _/  |\\______   \\_____ __  _  __        \n" +
+                    "/    \\  \\/\\__  \\\\   __\\     ___/\\__  \\\\ \\/ \\/ / \n" +
+                    "\\     \\____/ __ \\|  | |    |     / __ \\\\     /        \n" +
+                    " \\______  (____  /__| |____|    (____  /\\/\\_/           \n" +
+                    "        \\/     \\/                    \\/                   ";
 }
 

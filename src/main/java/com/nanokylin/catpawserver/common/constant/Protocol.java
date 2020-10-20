@@ -31,4 +31,5 @@ public class Protocol {
     // 若登陆成功则为客户端发回第二条RSA Public Keys
     public static final String SERVER_LOGIN_TWO = "002";
     //////////////////////////////////////////////////
+
 }

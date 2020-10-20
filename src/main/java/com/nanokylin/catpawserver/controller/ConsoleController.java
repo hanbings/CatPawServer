@@ -7,21 +7,23 @@ import com.nanokylin.catpawserver.utils.LogUtil;
 import java.util.Scanner;
 
 public class ConsoleController {
-    public void initConsole(ThreadController threadController){
+    public void initConsole(ThreadController threadController) {
         // 新建控制台线程
         Thread consoleThread = new ConsoleThread();
         consoleThread.setName("ConsoleThread");
         threadController.getThreadPool().execute(consoleThread);
     }
 }
-class ConsoleThread extends Thread{
+
+class ConsoleThread extends Thread {
     private static final LogUtil log = new LogUtil();
     private static final ConsoleService consoleService = new ConsoleServiceImpl();
+
     @Override
     @SuppressWarnings("InfiniteLoopStatement")
-    public void run(){
+    public void run() {
         Scanner sc = new Scanner(System.in);
-        for(;;){
+        for (; ; ) {
             String command = sc.nextLine();
             consoleService.execute(command);
         }

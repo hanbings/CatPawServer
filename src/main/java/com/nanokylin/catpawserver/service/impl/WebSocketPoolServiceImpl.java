@@ -32,7 +32,7 @@ public class WebSocketPoolServiceImpl implements WebSocketPoolService {
 
     @Override
     public void addUser(String userName, WebSocket connect) {
-        Resources.WebSocketUserMap.put(connect,userName);
+        Resources.WebSocketUserMap.put(connect, userName);
     }
 
     @Override

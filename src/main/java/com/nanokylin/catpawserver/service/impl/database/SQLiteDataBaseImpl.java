@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 public class SQLiteDataBaseImpl implements DataBaseService {
     LogUtil log = new LogUtil();
+
     @Override
     public Connection loadDataBase(String dataBaseName) {
         Connection connection;

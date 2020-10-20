@@ -1,25 +1,67 @@
 package com.nanokylin.catpawserver.service.impl;
 
-import com.nanokylin.catpawserver.common.Resources;
 import com.nanokylin.catpawserver.service.ThreadPoolService;
 import com.nanokylin.catpawserver.utils.LogUtil;
 
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-/**
- * 弃用 使用新实现 ThreadPoolServiceReforgeImpl
- * 下一个版本将删除此实现并将 ThreadPoolServiceReforgeImpl 更名为 ThreadPoolServiceImpl
- * 2020/10/20
- */
 public class ThreadPoolServiceImpl implements ThreadPoolService {
-    ThreadPoolExecutor threadPool;
-    @Override
-    public ThreadPoolExecutor initThreadPoolService() {
-        return threadPool = new ThreadPoolExecutor(Resources.corePoolSize,Resources.maximumPoolSize,
-                Resources.keepAliveTime,Resources.unit,Resources.queue,Resources.handle);
+    private final ThreadPoolExecutor threadPool;
+
+    /**
+     * 这个构造方法有点多余来着
+     * 先放着
+     *
+     * @param threadPool 线程池
+     */
+    public ThreadPoolServiceImpl(ThreadPoolExecutor threadPool) {
+        this.threadPool = threadPool;
     }
+
+    /**
+     * 设置一个线程池
+     *
+     * @param corePoolSize    线程池的基本大小
+     * @param maximumPoolSize 最大线程数
+     * @param keepAliveTime   保持存活时间
+     * @param unit            线程池维护线程所允许的空闲时间的单位
+     * @param queue           线程池所使用的缓冲队列
+     */
+    public ThreadPoolServiceImpl(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
+                                 BlockingQueue<Runnable> queue) {
+        this.threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
+                keepAliveTime, unit, queue);
+    }
+
+    /**
+     * 获取线程池
+     *
+     * @return 线程池
+     */
+    public ThreadPoolExecutor getThreadPool() {
+        return threadPool;
+    }
+
+    /**
+     * 将线程加入线程池
+     *
+     * @param thread 线程实例
+     */
     @Override
-    public void execute(java.lang.Thread thread){
+    public void execute(Thread thread) {
+        this.threadPool.execute(thread);
+    }
+
+    /**
+     * 将线程加入特定线程池
+     *
+     * @param threadPool 线程池
+     * @param thread     线程实例
+     */
+    @Override
+    public void execute(ThreadPoolExecutor threadPool, Thread thread) {
         threadPool.execute(thread);
     }
 
@@ -27,11 +69,11 @@ public class ThreadPoolServiceImpl implements ThreadPoolService {
     public void shutdown(String reason) {
         LogUtil log = new LogUtil();
         log.info(reason);
-        threadPool.shutdown();
+        this.threadPool.shutdown();
     }
 
     @Override
     public void shutdown() {
-        threadPool.shutdown();
+        this.threadPool.shutdown();
     }
 }

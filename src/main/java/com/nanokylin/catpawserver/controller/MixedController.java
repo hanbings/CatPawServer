@@ -6,7 +6,7 @@ import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.utils.LogUtil;
 
 public class MixedController {
-    public void initConfiguration(){
+    public void initConfiguration() {
         // 实例化配置类
         Config config = new Config();
         // 获取配置文件
@@ -16,7 +16,8 @@ public class MixedController {
         // 设置语言
         language.setLanguageMap(Config.getConfig("language").toString());
     }
-    public void baseInfo(LogUtil log){
+
+    public void baseInfo(LogUtil log) {
         log.info(Language.getText("os") + BaseInfo.SYSTEM_NAME);
         log.info(Language.getText("os_version") + BaseInfo.SYSTEM_VERSION);
         log.info(Language.getText("system_arch") + BaseInfo.SYSTEM_ARCH);

@@ -10,12 +10,11 @@ import com.nanokylin.catpawserver.utils.FileUtil;
  * (Package) Main -> (controller) MainController
  * 当然交控制权之前检查能不能把MainController跑起来
  * 所以先检查依赖啦！
+ *
  * @author Hanbings
  */
-public class CatPawServer
-{
-    public static void main( String[] args )
-    {
+public class CatPawServer {
+    public static void main(String[] args) {
         // 文件工具类
         FileUtil fileUtil = new FileUtil();
         // 实例化文件列表

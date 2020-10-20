@@ -13,16 +13,18 @@ import org.java_websocket.server.WebSocketServer;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 
-public class WebSocketController extends WebSocketServer{
+public class WebSocketController extends WebSocketServer {
     private static final LogUtil log = new LogUtil();
     private static final WebSocketPoolService webSocketPoolService = new WebSocketPoolServiceImpl();
 
-    public WebSocketController(){ }
+    public WebSocketController() {
+    }
+
     public WebSocketController(InetSocketAddress address) {
         super(address);
     }
 
-    public void initWebSocket(ThreadController threadController){
+    public void initWebSocket(ThreadController threadController) {
         // 实例化WebSocket服务
         //WebSocketService webSocketService = new WebSocketServiceImpl();
         // 新建控制台线程
@@ -41,7 +43,7 @@ public class WebSocketController extends WebSocketServer{
         connect.send("===================");
         ////////////////////////////////////////////////////////////
 
-        broadcast( "新连接: " + handshake.getResourceDescriptor() );
+        broadcast("新连接: " + handshake.getResourceDescriptor());
         log.info("新连接: " + connect.getRemoteSocketAddress());
     }
 
@@ -53,37 +55,33 @@ public class WebSocketController extends WebSocketServer{
 
     @Override
     public void onMessage(WebSocket connect, String message) {
-        log.info("已收到来自主机的: "	+ connect.getRemoteSocketAddress() + ": " + message);
+        log.info("已收到来自主机的: " + connect.getRemoteSocketAddress() + ": " + message);
         ///////////////////////// Test ////////////////////////////
-        if (message.contains("fuck")){
+        if (message.contains("fuck")) {
             connect.send("[CatPawServer] Fuck You NMSL");
-        }
-        else if(message.contains("version")){
+        } else if (message.contains("version")) {
             connect.send("[CatPawServer] " + Language.getText("cat_paw_server_version") + BaseInfo.CAT_PAW_SERVER_VERSION);
             connect.send("[CatPawServer] " + Language.getText("cat_paw_server_build_time") + BaseInfo.CAT_PAW_SERVER_BUILD_TIME);
-        }
-        else if (message.startsWith("join")){
-            String userName=message.replaceFirst("join", message);//用户名
-            userJoin(connect,userName);//用户加入
+        } else if (message.startsWith("join")) {
+            String userName = message.replaceFirst("join", message);//用户名
+            userJoin(connect, userName);//用户加入
             webSocketPoolService.sendMessageToAll("[CatPawServer] " + userName + "加入了服务器");
-        }
-        else if (message.startsWith("exit")){
+        } else if (message.startsWith("exit")) {
             userLeave(connect);
-        }
-        else{
+        } else {
             connect.send("[CatPawServer] 还不认识这句话 不过服务器收到了消息");
         }
         ////////////////////////////////////////////////////////////
     }
 
     @Override
-    public void onMessage( WebSocket connect, ByteBuffer message ) {
+    public void onMessage(WebSocket connect, ByteBuffer message) {
         log.info("已收到ByteBuffer来自: " + connect.getRemoteSocketAddress());
     }
 
     @Override
     public void onError(WebSocket connect, Exception ex) {
-        log.info("连接时发生错误: " + connect.getRemoteSocketAddress()  + ":" + ex);
+        log.info("连接时发生错误: " + connect.getRemoteSocketAddress() + ":" + ex);
     }
 
     @Override
@@ -94,20 +92,23 @@ public class WebSocketController extends WebSocketServer{
     /**
      * 去除掉失效的websocket链接
      */
-    public void userLeave(WebSocket connect){
+    public void userLeave(WebSocket connect) {
         webSocketPoolService.removeUser(connect);
     }
+
     /**
      * 将websocket加入用户池
      */
-    public void userJoin(WebSocket connect,String userName){
+    public void userJoin(WebSocket connect, String userName) {
         webSocketPoolService.addUser(userName, connect);
     }
 }
-class WebSocketThread extends Thread{
+
+class WebSocketThread extends Thread {
     private static final LogUtil log = new LogUtil();
+
     @Override
-    public void run(){
+    public void run() {
         String host = (String) Config.getConfig("ip");
         int port = (int) Config.getConfig("port");
         WebSocketServer s = new WebSocketController(new InetSocketAddress(host, port));

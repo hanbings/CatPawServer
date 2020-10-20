@@ -10,11 +10,12 @@ import java.util.Map;
 
 /**
  * 用于读取YAML配置文件的类
+ *
  * @author Hanbings
  */
 public class YAMLReader {
-    public Map<String,Object> getYamlFileConvertToMap(String path){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> getYamlFileConvertToMap(String path) {
+        Map<String, Object> map = new HashMap<>();
         try {
             Yaml yaml = new Yaml();
             URL url = CatPawServer.class.getClassLoader().getResource(path);
