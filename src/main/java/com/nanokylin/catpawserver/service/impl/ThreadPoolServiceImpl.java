@@ -6,11 +6,16 @@ import com.nanokylin.catpawserver.utils.LogUtil;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
+/**
+ * 弃用 使用新实现 ThreadPoolServiceReforgeImpl
+ * 下一个版本将删除此实现并将 ThreadPoolServiceReforgeImpl 更名为 ThreadPoolServiceImpl
+ * 2020/10/20
+ */
 public class ThreadPoolServiceImpl implements ThreadPoolService {
     ThreadPoolExecutor threadPool;
     @Override
-    public void initThreadPoolService() {
-        threadPool = new ThreadPoolExecutor(Resources.corePoolSize,Resources.maximumPoolSize,
+    public ThreadPoolExecutor initThreadPoolService() {
+        return threadPool = new ThreadPoolExecutor(Resources.corePoolSize,Resources.maximumPoolSize,
                 Resources.keepAliveTime,Resources.unit,Resources.queue,Resources.handle);
     }
     @Override

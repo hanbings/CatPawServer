@@ -1,13 +1,15 @@
 package com.nanokylin.catpawserver.service;
 
 
+import java.util.concurrent.ThreadPoolExecutor;
+
 public interface ThreadPoolService {
     /**
      * 初始化线程池
      * 初始化前必须先设置Resources的参数 否则将报错并终止程序
      * @author Hanbings
      */
-    void initThreadPoolService();
+    ThreadPoolExecutor initThreadPoolService();
 
     /**
      * 加入一条线程到线程池

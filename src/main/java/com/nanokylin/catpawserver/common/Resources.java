@@ -50,8 +50,6 @@ public class Resources {
     public static TimeUnit unit;
     //线程池所使用的缓冲队列
     public static BlockingQueue<Runnable> queue;
-    // 拒绝任务的处理策略
-    public static ThreadPoolExecutor.AbortPolicy handle = new ThreadPoolExecutor.AbortPolicy();
     // 线程池对象
     public static ThreadPoolService threadPoolService;
 

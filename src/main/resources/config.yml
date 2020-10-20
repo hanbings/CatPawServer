@@ -15,7 +15,6 @@ language: zh_CN
 #      maximumPoolSize 最大线程数
 #      keepAliveTime 存活时间 (s)
 #           queue 任务缓存器
-#    threadNameFormat 线程名字格式
 #
 #####################################
 corePoolSize: 6
