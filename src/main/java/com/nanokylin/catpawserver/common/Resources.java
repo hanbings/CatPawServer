@@ -41,7 +41,7 @@ public class Resources {
     // private static final ThreadPoolExecutor.AbortPolicy HANDLER = new ThreadPoolExecutor.AbortPolicy();
     // ################ Thread ################ //
     // 线程池对象
-    public static ThreadPoolService threadPoolService;
+    public static ThreadPoolService threadPool;
 
     // ################ DataBase ################ //
     // SQLite

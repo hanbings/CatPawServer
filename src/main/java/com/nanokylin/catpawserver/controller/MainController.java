@@ -4,6 +4,7 @@ import com.nanokylin.catpawserver.common.Resources;
 import com.nanokylin.catpawserver.service.DataBaseService;
 import com.nanokylin.catpawserver.service.impl.database.MySQLDataBaseImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
+import com.nanokylin.catpawserver.utils.SummaryUtil;
 
 /**
  * 给Main函数用的MainController
@@ -39,6 +40,19 @@ public class MainController {
         // 初始化数据库
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.initDatabase(threadController);
+
+        /////////////////////////// 测试摘要Util ////////////////////////////
+
+        SummaryUtil summaryUtil = new SummaryUtil();
+        log.info("原始字符: Hanbings");
+        log.info("MD2: " + summaryUtil.getMD2("Hanbings"));
+        log.info("MD5: " + summaryUtil.getMD5("Hanbings"));
+        log.info("SHA1: " + summaryUtil.getSHA1("Hanbings"));
+        log.info("SHA256: " + summaryUtil.getSHA256("Hanbings"));
+        log.info("SHA384: " + summaryUtil.getSHA384("Hanbings"));
+        log.info("SHA512: " + summaryUtil.getSHA512("Hanbings"));
+
+        ///////////////////////////////////////////////////////////////////
 
         // 服务器启动完成
         long endTime = System.currentTimeMillis();

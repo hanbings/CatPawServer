@@ -6,6 +6,7 @@ import com.nanokylin.catpawserver.utils.LogUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MySQLDataBaseHighVersionImpl implements DataBaseService {
     @Override
@@ -30,6 +31,14 @@ public class MySQLDataBaseHighVersionImpl implements DataBaseService {
 
     @Override
     public void execute(Connection connection, String sql) {
-
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+            connection.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 }
