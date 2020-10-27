@@ -46,5 +46,4 @@ public class SQLiteDataBaseImpl implements DataBaseService {
             exception.printStackTrace();
         }
     }
-
 }
