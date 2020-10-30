@@ -1,15 +1,15 @@
 package com.nanokylin.catpawserver.common.entity;
 
 public class User {
-    private int uid;
+    private int UID;
     private String username;
     private String password;
     private String privateKey;
     private String publicKey;
     private String createTime;
 
-    public User(int uid,String username,String password,String privateKey,String publicKey,String createTime){
-        this.uid = uid;
+    public User(int UID,String username,String password,String privateKey,String publicKey,String createTime){
+        this.UID =UID;
         this.username = username;
         this.password = password;
         this.privateKey = privateKey;
@@ -18,8 +18,8 @@ public class User {
     }
 
     ///////////////////////////Setter and Getter//////////////////////////
-    public User setUid(int uid){
-        this.uid = uid;
+    public User setUID(int UID){
+        this.UID = UID;
         return this;
     }
     public User setUsername(String username){
@@ -51,8 +51,8 @@ public class User {
         return password;
     }
 
-    public int getUid() {
-        return uid;
+    public int getUID() {
+        return UID;
     }
 
     public String getUsername() {
