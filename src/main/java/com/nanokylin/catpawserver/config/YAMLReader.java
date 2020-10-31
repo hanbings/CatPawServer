@@ -14,6 +14,11 @@ import java.util.Map;
  * @author Hanbings
  */
 public class YAMLReader {
+    /**
+     * 获取YAML文件转换成 Map<String, String>
+     * @param path YAML路径
+     * @return Map<String, String>
+     */
     public Map<String, Object> getYamlFileConvertToMap(String path) {
         Map<String, Object> map = new HashMap<>();
         try {
