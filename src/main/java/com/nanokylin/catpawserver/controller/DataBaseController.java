@@ -2,7 +2,6 @@ package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.Resources;
 import com.nanokylin.catpawserver.service.DataBaseService;
-import com.nanokylin.catpawserver.service.impl.database.MySQLDataBaseImpl;
 import com.nanokylin.catpawserver.service.impl.database.SQLiteDataBaseImpl;
 
 import java.util.Scanner;
