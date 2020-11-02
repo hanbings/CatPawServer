@@ -1,8 +1,8 @@
-package com.nanokylin.catpawserver.utils.sql;
+package com.nanokylin.catpawserver.database;
 
-import com.nanokylin.catpawserver.common.entity.User;
+import com.nanokylin.catpawserver.database.entity.User;
 
-public class GenerateForSQLiteUtil {
+public class GenerateForSQLite {
     public String generateNewUserSQL(User user) {
         String sql;
         sql = "INSERT INTO user_table (uid,email,username,password,create_time,update_time)\n" +

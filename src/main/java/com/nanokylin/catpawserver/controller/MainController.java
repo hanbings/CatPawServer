@@ -1,14 +1,6 @@
 package com.nanokylin.catpawserver.controller;
 
-import com.nanokylin.catpawserver.common.Resources;
-import com.nanokylin.catpawserver.common.entity.User;
-import com.nanokylin.catpawserver.service.DataBaseService;
-import com.nanokylin.catpawserver.service.impl.database.SQLiteDataBaseImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
-import com.nanokylin.catpawserver.utils.sql.GenerateForSQLiteUtil;
-
-import java.sql.Connection;
-import java.util.Date;
 
 /**
  * 给Main函数用的MainController

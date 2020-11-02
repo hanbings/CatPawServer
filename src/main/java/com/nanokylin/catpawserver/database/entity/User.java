@@ -1,4 +1,4 @@
-package com.nanokylin.catpawserver.common.entity;
+package com.nanokylin.catpawserver.database.entity;
 
 public class User {
     private int UID;
