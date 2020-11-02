@@ -29,7 +29,6 @@ public class WebSocketController extends WebSocketServer {
         //WebSocketService webSocketService = new WebSocketServiceImpl();
         // 新建控制台线程
         Thread WebSocketThread = new WebSocketThread();
-        WebSocketThread.setName("WebSocketThread");
         threadController.getThreadPool().execute(WebSocketThread);
     }
 
@@ -109,6 +108,7 @@ class WebSocketThread extends Thread {
 
     @Override
     public void run() {
+        super.setName("WebSocketThread");
         String host = (String) Config.getConfig("ip");
         int port = (int) Config.getConfig("port");
         WebSocketServer s = new WebSocketController(new InetSocketAddress(host, port));

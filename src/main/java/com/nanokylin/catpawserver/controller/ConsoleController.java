@@ -10,7 +10,6 @@ public class ConsoleController {
     public void initConsole(ThreadController threadController) {
         // 新建控制台线程
         Thread consoleThread = new ConsoleThread();
-        consoleThread.setName("ConsoleThread");
         threadController.getThreadPool().execute(consoleThread);
     }
 }
@@ -22,6 +21,7 @@ class ConsoleThread extends Thread {
     @Override
     @SuppressWarnings("InfiniteLoopStatement")
     public void run() {
+        super.setName("ConsoleThread");
         Scanner sc = new Scanner(System.in);
         for (; ; ) {
             String command = sc.nextLine();
