@@ -8,13 +8,13 @@ public class User {
     private String createTime;
     private String updateTime;
 
-    public User(int UID,String email,String username,String password,String createTime,String updateTime){
-        this.UID =UID;
+    public User(int UID, String email, String username, String password, String createTime, String updateTime) {
+        this.UID = UID;
         this.email = email;
         this.username = username;
         this.password = password;
         this.createTime = createTime;
-        this.updateTime =updateTime;
+        this.updateTime = updateTime;
     }
 
     ///////////////////////////Setter and Getter//////////////////////////

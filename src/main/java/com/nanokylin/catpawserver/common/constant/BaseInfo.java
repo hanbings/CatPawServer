@@ -21,9 +21,9 @@ public class BaseInfo {
     //Java类路径
     public static final String JAVA_CLASS_PATH = props.getProperty("java.class.path");
     //CatPawServer版本号
-    public static final String CAT_PAW_SERVER_VERSION = "1.0.0 CAT PAW HANG";
+    public static final String CAT_PAW_SERVER_VERSION = "1.0.0 CAT PAW HANG (Bate)";
     //CatPawServer构建时间
-    public static final String CAT_PAW_SERVER_BUILD_TIME = "2020/09/19 SAT Hanbings 3219065882@qq.com";
+    public static final String CAT_PAW_SERVER_BUILD_TIME = "2020/11/02 SAT Hanbings 3219065882@qq.com";
     //LOGO
     public static final String CAT_PAW_SERVER_LOGO =
             "                                                           \n" +

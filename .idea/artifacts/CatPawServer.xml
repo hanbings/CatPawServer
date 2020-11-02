@@ -17,6 +17,13 @@
         <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.32.3.2" />
         <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.49" />
       </element>
+      <element id="directory" name="data">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/data/catnote.db" />
+      </element>
+      <element id="directory" name="language">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/language/en_US.yml" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/language/zh_CN.yml" />
+      </element>
     </root>
   </artifact>
 </component>

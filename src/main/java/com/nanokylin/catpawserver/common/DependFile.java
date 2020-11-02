@@ -23,6 +23,8 @@ public class DependFile {
         Resources.DependFile.add("./language/en_US.yml");
         // 配置文件
         Resources.DependFile.add("./config.yml");
+        // 初始SQLite数据库
+        Resources.DependFile.add("./data/catnote.db");
 
     }
 

@@ -1,5 +1,6 @@
 package com.nanokylin.catpawserver.database;
 
+import com.nanokylin.catpawserver.database.entity.Key;
 import com.nanokylin.catpawserver.database.entity.User;
 
 public class GenerateForSQLite {
@@ -12,6 +13,16 @@ public class GenerateForSQLite {
                 "'" + user.getPassword() + "', " +
                 "'" + user.getCreateTime() + "', " +
                 "'" + user.getUpdateTime() + "');";
+        return sql;
+    }
+    public String generateNewKeySQL(Key key){
+        String sql;
+        sql = "INSERT INTO key_table (uid,public_key,private_key,create_time,update_time)\n" +
+                "VALUES (" + key.getUID() + ", " +
+                "'" + key.getPublicKey() + "', " +
+                "'" + key.getPrivateKey() + "', " +
+                "'" + key.getCreateTime() + "', " +
+                "'" + key.getUpdateTime() + "');";
         return sql;
     }
 }
