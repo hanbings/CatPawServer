@@ -1,8 +1,6 @@
 package com.nanokylin.catpawserver.controller;
 
 import com.nanokylin.catpawserver.common.Config;
-import com.nanokylin.catpawserver.common.Language;
-import com.nanokylin.catpawserver.common.constant.BaseInfo;
 import com.nanokylin.catpawserver.service.WebSocketPoolService;
 import com.nanokylin.catpawserver.service.impl.WebSocketPoolServiceImpl;
 import com.nanokylin.catpawserver.utils.LogUtil;
@@ -22,6 +20,7 @@ public class WebSocketController extends WebSocketServer {
 
     public WebSocketController(InetSocketAddress address) {
         super(address);
+
     }
 
     public void initWebSocket(ThreadController threadController) {
@@ -38,39 +37,25 @@ public class WebSocketController extends WebSocketServer {
         ///////////////////////// Test ////////////////////////////
         connect.send("== 欢迎连接CatPawServer ==");
         connect.send("Github: https://github.com/hanbings/CatPawServer");
-        connect.send("你可以通过输入窗口与CatPawServer服务器进行对话");
         connect.send("===================");
         ////////////////////////////////////////////////////////////
-
         broadcast("新连接: " + handshake.getResourceDescriptor());
         log.info("新连接: " + connect.getRemoteSocketAddress());
+
     }
 
     @Override
     public void onClose(WebSocket connect, int code, String reason, boolean remote) {
         log.info("关闭: " + connect.getRemoteSocketAddress() + " 退出代码: " + code + " 地址信息: " + reason);
-        userLeave(connect);
     }
 
     @Override
     public void onMessage(WebSocket connect, String message) {
         log.info("已收到来自主机的: " + connect.getRemoteSocketAddress() + ": " + message);
-        ///////////////////////// Test ////////////////////////////
-        if (message.contains("fuck")) {
-            connect.send("[CatPawServer] Fuck You NMSL");
-        } else if (message.contains("version")) {
-            connect.send("[CatPawServer] " + Language.getText("cat_paw_server_version") + BaseInfo.CAT_PAW_SERVER_VERSION);
-            connect.send("[CatPawServer] " + Language.getText("cat_paw_server_build_time") + BaseInfo.CAT_PAW_SERVER_BUILD_TIME);
-        } else if (message.startsWith("join")) {
-            String userName = message.replaceFirst("join", message);//用户名
-            userJoin(connect, userName);//用户加入
-            webSocketPoolService.sendMessageToAll("[CatPawServer] " + userName + "加入了服务器");
-        } else if (message.startsWith("exit")) {
-            userLeave(connect);
-        } else {
-            connect.send("[CatPawServer] 还不认识这句话 不过服务器收到了消息");
+        if (message.startsWith("CATC001") && message.endsWith("E")){
+            String json = message.substring(7,message.length() -1 );
+            
         }
-        ////////////////////////////////////////////////////////////
     }
 
     @Override

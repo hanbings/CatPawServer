@@ -12,12 +12,12 @@ import java.util.Set;
 public class WebSocketPoolServiceImpl implements WebSocketPoolService {
 
     @Override
-    public String getUserByWs(WebSocket connect) {
+    public String getUserByWebSocket(WebSocket connect) {
         return Resources.WebSocketUserMap.get(connect);
     }
 
     @Override
-    public WebSocket getWsByUser(String userName) {
+    public WebSocket getWebSocketByUser(String userName) {
         Set<WebSocket> keySet = Resources.WebSocketUserMap.keySet();
         synchronized (keySet) {
             for (WebSocket connect : keySet) {

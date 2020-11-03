@@ -11,13 +11,13 @@ public interface WebSocketPoolService {
      * @param connect 连接
      * @author Hanbings
      */
-    String getUserByWs(WebSocket connect);
+    String getUserByWebSocket(WebSocket connect);
 
     /**
      * 根据userName获取WebSocket,这是一个list,此处取第一个
      * 因为有可能多个websocket对应一个userName（但一般是只有一个，因为在close方法中，我们将失效的websocket连接去除了）
      */
-    WebSocket getWsByUser(String userName);
+    WebSocket getWebSocketByUser(String userName);
 
     /**
      * 向连接池中添加连接
