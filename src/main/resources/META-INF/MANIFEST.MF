@@ -3,4 +3,4 @@ Main-Class: com.nanokylin.catpawserver.CatPawServer
 Class-Path: ./ ./libs/commons-lang-2.6.jar ./libs/Java-WebSocket-1.5.1.jar ./libs/log4j-api-2.13.3.jar
             ./libs/log4j-core-2.13.3.jar ./libs/log4j-slf4j-impl-2.13.3.jar ./libs/log4j-web-2.13.3.jar
             ./libs/slf4j-api-1.7.25.jar ./libs/snakeyaml-1.27.jar ./libs/sqlite-jdbc-3.32.3.2.jar
-            ./libs/mysql-connector-java-5.1.49.jar
+            ./libs/mysql-connector-java-5.1.49.jar ./libs/gson-2.8.6.jar

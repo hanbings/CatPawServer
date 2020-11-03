@@ -16,6 +16,7 @@
         <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.13.3" />
         <element id="library" level="project" name="Maven: org.xerial:sqlite-jdbc:3.32.3.2" />
         <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.49" />
+        <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
       </element>
       <element id="directory" name="data">
         <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/data/catnote.db" />

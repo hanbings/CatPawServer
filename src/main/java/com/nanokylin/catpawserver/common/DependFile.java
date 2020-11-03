@@ -18,6 +18,7 @@ public class DependFile {
         Resources.DependFile.add("./libs/snakeyaml-1.27.jar");
         Resources.DependFile.add("./libs/sqlite-jdbc-3.32.3.2.jar");
         Resources.DependFile.add("./libs/mysql-connector-java-5.1.49.jar");
+        Resources.DependFile.add("./libs/gson-2.8.6.jar");
         // 语言
         Resources.DependFile.add("./language/zh_CN.yml");
         Resources.DependFile.add("./language/en_US.yml");

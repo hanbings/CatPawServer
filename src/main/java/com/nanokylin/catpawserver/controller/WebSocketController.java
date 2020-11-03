@@ -3,6 +3,7 @@ package com.nanokylin.catpawserver.controller;
 import com.nanokylin.catpawserver.common.Config;
 import com.nanokylin.catpawserver.service.WebSocketPoolService;
 import com.nanokylin.catpawserver.service.impl.WebSocketPoolServiceImpl;
+import com.nanokylin.catpawserver.utils.JsonUtil;
 import com.nanokylin.catpawserver.utils.LogUtil;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
@@ -10,6 +11,7 @@ import org.java_websocket.server.WebSocketServer;
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.util.Map;
 
 public class WebSocketController extends WebSocketServer {
     private static final LogUtil log = new LogUtil();
@@ -54,7 +56,13 @@ public class WebSocketController extends WebSocketServer {
         log.info("已收到来自主机的: " + connect.getRemoteSocketAddress() + ": " + message);
         if (message.startsWith("CATC001") && message.endsWith("E")){
             String json = message.substring(7,message.length() -1 );
-            
+            JsonUtil jsonUtil = new JsonUtil();
+            Map<String,Object> jsonMap =  jsonUtil.jsonToMap(json);
+            if(jsonMap.get("username").toString() != null){
+                log.info("已将用户加入WebSocket连接池" + jsonMap.get("username").toString());
+                userJoin(connect,jsonMap.get("username").toString());
+                connect.send("已接收到协议CATC001: " + message);
+            }
         }
     }
 
