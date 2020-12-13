@@ -1,10 +1,10 @@
 package com.nanokylin.catpawserver.config;
 
-import com.nanokylin.catpawserver.CatPawServer;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,16 +20,15 @@ public class YAMLReader {
      * @return Map<String, String>
      */
     public Map<String, Object> getYamlFileConvertToMap(String path) {
-        Map<String, Object> map = new HashMap<>();
-        try {
-            Yaml yaml = new Yaml();
-            URL url = CatPawServer.class.getClassLoader().getResource(path);
-            if (url != null) {
-                map = yaml.load(new FileInputStream(url.getFile()));
-
+        Map map = new HashMap<String,Object>();
+        Yaml yaml = new Yaml();
+        File ymlFile = new File(path);
+        if (ymlFile.exists()) {
+            try {
+                map = yaml.load(new FileInputStream(ymlFile));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return map;
     }
